@@ -815,6 +815,12 @@
 
   .btn .sm { display: none; }
   @media (max-width: 640px) { .btn .lg { display: none; } .btn .sm { display: inline; } }
+
+  /* mobile: the first screen ends above Safari's bottom bar, so the bar sits over the white page (no video tint under it) */
+  @media (max-width: 900px) {
+    .hero { height: 100vh; height: 100svh; }
+    .hero-in { padding-top: 0; padding-bottom: var(--gut); }
+  }
 </style>
 </head>
 <body>
