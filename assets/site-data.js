@@ -41,6 +41,7 @@ window.I18N_EN = {
   'proc.chips': 'All treatments',
   'proc.photo': 'Before &amp; after photo',
   'proc.view': 'View',
+  'proc.prompt': 'Choose the area you are interested in',
   'proc.face': 'Face',
   'proc.body': 'Body',
 

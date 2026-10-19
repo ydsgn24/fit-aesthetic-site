@@ -821,6 +821,13 @@
     .hero { height: 100vh; height: 100svh; }
     .hero-in { padding-top: 0; padding-bottom: var(--gut); }
   }
+
+  /* treatment map, mobile: the prompt sits above the figure all the time; zone info opens below */
+  #procedures .proc-prompt { display: none; }
+  @media (max-width: 900px) {
+    #procedures .proc-prompt { display: block; margin: 0; font-size: clamp(28px, 7.5vw, 34px); line-height: 1.1; color: var(--text); }
+    #procedures.is-empty .text { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -882,6 +889,7 @@
 
 <!-- 3. Procedures map (existing block) -->
 <section class="block" id="procedures" data-i18n-label="aria.proc" aria-label="Процедуры">
+  <h2 class="proc-prompt" data-i18n="proc.prompt">Выберите зону, которая вас интересует</h2>
   <div class="stage" id="stage">
     <canvas id="scene" tabindex="0" data-i18n-label="proc.canvas" aria-label="3D-фигура из точек. Потяните влево или вправо, чтобы повернуть. Плюсы на фигуре открывают описание процедуры."></canvas>
     <div class="spots" id="spots"></div>
@@ -1755,6 +1763,7 @@ function renderText(s) {
   const tx = LANG === 'ru' && TEXT_RU[s.id] ? TEXT_RU[s.id] : s.text;
   titleEl.textContent = s.label;
   descEl.hidden = false;
+  document.getElementById('procedures').classList.remove('is-empty');
   document.getElementById('photo').hidden = document.getElementById('cta').hidden = false;
   descEl.innerHTML = '';
   descEl.append(tx[0] + ' ');
@@ -1790,6 +1799,7 @@ function renderEmpty() {
   titleEl.textContent = LANG === 'en' ? 'Choose the area you are interested in' : 'Выберите зону, которая вас интересует';
   descEl.innerHTML = '';
   descEl.hidden = true;
+  document.getElementById('procedures').classList.add('is-empty');
   document.getElementById('photo').hidden = document.getElementById('cta').hidden = true;   // фото и кнопка появятся после выбора зоны
 }
 document.addEventListener('fa:lang', e => {   // язык страницы переключили — перерисовать описание
