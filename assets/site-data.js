@@ -28,7 +28,7 @@ window.I18N_EN = {
   'hero.title': 'Beauty, guided<br>by <em>medical expertise</em>',
   'hero.sub': 'Medical expertise. Advanced technology. A personalized approach.',
   'cta.consult': 'Book a Consultation',
-  'cta.specialist': 'Book with a DHA-licensed specialist',
+  'cta.specialist': '<span class="lg">Book with a DHA-licensed specialist</span><span class="sm">Book with a specialist</span>',
 
   'aria.intro': 'Our approach and special offers',
   'intro.lead': 'At Fit&amp;Aesthetic, <span class="gray">we combine medical expertise, advanced technology and a personalized approach to create solutions that enhance your natural beauty and help you feel confident in your body.</span>',
