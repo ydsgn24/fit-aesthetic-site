@@ -804,6 +804,14 @@
     .hero { height: 100vh; height: 100lvh; }
     .hero-in { padding-top: env(safe-area-inset-top, 0px); padding-bottom: calc(var(--gut) + env(safe-area-inset-bottom, 0px) + max(0px, 100lvh - 100svh)); }
   }
+
+  /* hero video always covers its box, whatever the screen: absolute, cover, slight overscale hides sub-pixel edges */
+  .hero-poster, video.hero-bg { content-visibility: visible; position: absolute; inset: -2px; width: calc(100% + 4px); height: calc(100% + 4px); max-width: none; object-fit: cover; object-position: 50% 50%; }
+
+  /* soft shade under the hero texts (top bar, bottom headline and button) */
+  .hero::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,0,0,.32) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 40%, rgba(0,0,0,.5) 100%); }
+  .hero-in { z-index: 1; }
 </style>
 </head>
 <body>
@@ -1082,6 +1090,79 @@
   <div class="modal-scroll" id="modalBody"></div>
 </dialog>
 
+<script type="application/json" id="offersData">{
+ "items": [
+  {
+   "show": true,
+   "tag": "Body treatments",
+   "img": "assets/img/pressotherapy-course-dubai.webp",
+   "title_ru": "Курс\nпрессотерапии 5+1",
+   "title_en": "Pressotherapy\ncourse 5+1",
+   "old": "3000 AED",
+   "price": "2500 AED"
+  },
+  {
+   "show": true,
+   "tag": "Body treatments",
+   "img": "assets/img/hydrotherapy-bath-body-treatment-dubai.webp",
+   "title_ru": "Курс\nгидрованны 5+1",
+   "title_en": "Hydrotherapy bath\ncourse 5+1",
+   "old": "3000 AED",
+   "price": "2500 AED"
+  },
+  {
+   "show": true,
+   "tag": "Body treatments",
+   "img": "assets/img/icoone-body-contouring-dubai.webp",
+   "title_ru": "Курс\nIcoone 5+1",
+   "title_en": "Icoone\ncourse 5+1",
+   "old": "3300 AED",
+   "price": "2750 AED"
+  },
+  {
+   "show": true,
+   "tag": "Body treatments",
+   "img": "assets/img/pressotherapy-course-dubai.webp",
+   "crop": "left:-41.9%;top:-15.34%;width:191.09%;height:147.08%",
+   "title_ru": "Прессотерапия\n+ гидрованна",
+   "title_en": "Pressotherapy\n+ hydrotherapy bath",
+   "old": "1000 AED",
+   "price": "500 AED"
+  },
+  {
+   "show": true,
+   "tag": "Body treatments",
+   "img": "assets/img/icoone-body-contouring-dubai.webp",
+   "pos": "72% 50%",
+   "title_ru": "Прессотерапия\n+ Icoone",
+   "title_en": "Pressotherapy\n+ Icoone",
+   "old": "1050 AED",
+   "price": "550 AED"
+  },
+  {
+   "show": true,
+   "tag": "Facial treatments",
+   "img": "assets/img/advalight-facial-treatment-dubai.webp",
+   "pos": "50% 30%",
+   "title_ru": "AdvaLight\nfull protocol",
+   "title_en": "AdvaLight\nfull protocol",
+   "old": "2200 AED",
+   "price": "1760 AED",
+   "gift_ru": "+ LED therapy в подарок",
+   "gift_en": "+ complimentary LED therapy"
+  },
+  {
+   "show": true,
+   "tag": "Facial treatments",
+   "img": "assets/img/facial-treatments-dubai.webp",
+   "pos": "50% 35%",
+   "title_ru": "BBL\n+ LED therapy",
+   "title_en": "BBL\n+ LED therapy",
+   "gift_ru": "LED therapy\nв подарок",
+   "gift_en": "Complimentary\nLED therapy"
+  }
+ ]
+}</script>
 <script src="assets/site-data.js"></script>
 <script src="assets/site.js"></script>
 
