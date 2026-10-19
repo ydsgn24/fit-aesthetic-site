@@ -799,6 +799,11 @@
   html { background: #fff; }
   .hero { background: #d9d6d2; }
   video.hero-bg { background: transparent; top: 0; height: 100%; }
+  /* iOS: fill the whole screen, also behind the status bar and the bottom toolbar */
+  @media (max-width: 900px) {
+    .hero { height: 100vh; height: 100lvh; }
+    .hero-in { padding-top: env(safe-area-inset-top, 0px); padding-bottom: calc(var(--gut) + env(safe-area-inset-bottom, 0px) + max(0px, 100lvh - 100svh)); }
+  }
 </style>
 </head>
 <body>
