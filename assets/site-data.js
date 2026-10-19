@@ -357,7 +357,7 @@ window.FA_DIRECTIONS = [
   },
   { id: 'injections', name: 'Injections', layers: [['assets/img/injections-lip-filler-dubai.webp', 'fit']], bannerY: '45%', shade: '0%,100%' },
   { id: 'body', bannerY: '58%', name: 'Body<br>Treatments', layers: [['assets/img/body-treatments-dubai.webp', L('left:-8.08%;top:-63.07%;width:108.08%;height:174.04%')]], shade: '25.74%,39.77%' },
-  { id: 'laser', name: 'Laser<br>Hair Removal', layers: [['assets/img/laser-hair-removal-dubai.webp', 'fit:bottom']], shade: '14.87%,46.76%' },
+  { id: 'laser', name: 'Laser<br>Hair Removal', layers: [['assets/img/laser-hair-removal-dubai.webp', 'fit']], bannerY: '55%', shade: '14.87%,46.76%' },
   { id: 'weight', name: 'Weight<br>Management', layers: [['assets/img/weight-management-dubai.webp', 'fit']], shade: '0%,100%', noBase: true },
   { id: 'endocrinology', name: 'Endocrinology', layers: [['assets/img/endocrinology-dubai.webp', L('left:0.04%;top:-40.41%;width:100%;height:111.56%')]], shade: '22.65%,49.9%', angle: 176.45 },
   { id: 'lab', name: 'Lab<br>Diagnostics', layers: [['assets/img/lab-diagnostics-blood-test-dubai.webp', L('left:0;top:-11.52%;width:100%;height:111.56%')]], shade: '19.71%,52.27%', angle: 177 },

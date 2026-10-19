@@ -834,6 +834,22 @@
   .doc .doc-txt { max-width: none; }
   .doc::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 90px; z-index: 0; pointer-events: none; background: linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,0)); }
   .doc .more { z-index: 1; }
+
+  /* before/after tabs: one line, scroll sideways, run past the screen edge */
+  #filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain; max-width: 100%; }
+  #filters::-webkit-scrollbar { display: none; }
+  #filters .chip-f { flex: none; white-space: nowrap; }
+  @media (max-width: 900px) {
+    .results-head { flex-direction: column; align-items: flex-start; }
+    #filters { align-self: stretch; margin-inline: calc(-1 * var(--bleed)); padding-inline: var(--bleed); max-width: none; }
+  }
+  @media (max-width: 900px) { #filters { width: calc(100% + 2 * var(--bleed)); box-sizing: border-box; } .results-head { min-width: 0; } }
+
+  /* mobile footer: everything centred */
+  @media (max-width: 640px) {
+    .footer-cols { align-items: center; text-align: center; }
+    .footer-cols > div { align-items: center; padding-inline: 0; }
+  }
 </style>
 </head>
 <body>
