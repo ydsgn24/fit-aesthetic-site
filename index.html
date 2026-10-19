@@ -828,6 +828,12 @@
     #procedures .proc-prompt { display: block; margin: 0; font-size: clamp(28px, 7.5vw, 34px); line-height: 1.1; color: var(--text); }
     #procedures.is-empty .text { display: none; }
   }
+
+  /* specialists: "Details" in the top-left corner of the card */
+  .doc .more { position: absolute; top: 16px; left: 16px; }
+  .doc .doc-txt { max-width: none; }
+  .doc::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 90px; z-index: 0; pointer-events: none; background: linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,0)); }
+  .doc .more { z-index: 1; }
 </style>
 </head>
 <body>
