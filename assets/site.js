@@ -49,22 +49,25 @@
   try { useOffers(JSON.parse($('#offersData').textContent).items); } catch (e) {}
 
   /* ---------- content saved in the admin panel (/admin) replaces the built-in copy ---------- */
-  const both = o => (o && (o.ru || o.en) ? { ru: o.ru || o.en, en: o.en || o.ru } : null);   // empty English → Russian
+  // an empty English version (no text filled in) falls back to the Russian one, and the other way round
+  const both = (o, filled = Boolean) => {
+    const ru = o && filled(o.ru) ? o.ru : null, en = o && filled(o.en) ? o.en : null;
+    return ru || en ? { ru: ru || en, en: en || ru } : null;
+  };
+  const bioFilled = b => b && (b.badge || (b.text && b.text.length) || (b.areas && b.areas.length) || (b.after && b.after.length) || (b.tech && b.tech.length));
+  const pageFilled = p => p && (p.lead || p.text || (p.list && p.list.length) || (p.procedures && p.procedures.length));
   function useContent(c) {
     if (Array.isArray(c.offers)) useOffers(c.offers);
     if (Array.isArray(c.team)) {
       window.FA_TEAM = c.team.filter(d => !d.hidden && d.img && (both(d.name) || both(d.role))).map(d => {
         const name = both(d.name), role = both(d.role) || name;
-        const bio = d.bio && (d.bio.ru || d.bio.en) ? { ru: d.bio.ru || d.bio.en, en: d.bio.en || d.bio.ru } : null;
-        return { ...d, name: name && both(d.role) ? name : null, role, bio };
+        return { ...d, name: name && both(d.role) ? name : null, role, bio: both(d.bio, bioFilled) };
       });
       renderTeam();
     }
     if (Array.isArray(c.directions)) {
-      window.FA_DIRECTIONS = c.directions.filter(d => !d.hidden && d.name && d.layers && d.layers.length).map(d => {
-        const page = d.page && (d.page.ru || d.page.en) ? { ru: d.page.ru || d.page.en, en: d.page.en || d.page.ru } : null;
-        return { shade: '0%,100%', ...d, page };
-      });
+      window.FA_DIRECTIONS = c.directions.filter(d => !d.hidden && d.name && d.layers && d.layers.length)
+        .map(d => ({ shade: '0%,100%', ...d, page: both(d.page, pageFilled) }));
       renderDirections();
     }
     renderModal();
@@ -386,6 +389,17 @@
     card.querySelector('a.btn, button.btn, .more')?.click();
   });
   /* ---------- licenses: a click opens the picture at full screen height ---------- */
+  document.head.insertAdjacentHTML('beforeend', `<style>
+    .offers[hidden] { display: none; }
+    .m-lics a { width: 96px; height: 96px; }
+    .lightbox { width: 100vw; height: 100vh; max-width: none; max-height: none; margin: 0; padding: 16px; border: 0; background: transparent; place-items: center; cursor: zoom-out; }
+    .lightbox[open] { display: grid; }
+    .lightbox::backdrop { background: rgba(0,0,0,.86); }
+    .lightbox img { display: block; max-width: calc(100vw - 32px); max-height: calc(100vh - 32px); width: auto; height: auto; object-fit: contain; background: #fff; }
+    .lightbox-x { position: fixed; top: 12px; right: 12px; width: 41px; height: 41px; border: 0; border-radius: 50%; background: #fff; cursor: pointer; }
+    .lightbox-x::before, .lightbox-x::after { content: ""; position: absolute; left: 10px; top: 20px; width: 21px; height: 1.5px; background: #000; transform: rotate(45deg); }
+    .lightbox-x::after { transform: rotate(-45deg); }
+  </style>`);
   const lightbox = document.createElement('dialog');
   lightbox.className = 'lightbox';
   lightbox.innerHTML = '<img alt=""><button class="lightbox-x" type="button" aria-label="Закрыть"></button>';

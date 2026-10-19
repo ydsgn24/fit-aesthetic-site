@@ -571,15 +571,6 @@
   .m-lics a { display: block; width: 111px; height: 115px; overflow: hidden; background: var(--panel); transition: opacity .2s; }
   .m-lics a:hover { opacity: .8; }
   .m-lics img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-.m-lics a { width: 96px; height: 96px; }   /* square thumbnails; a click opens the full picture */
-.lightbox { max-width: 100vw; max-height: 100vh; width: 100vw; height: 100vh; margin: 0; padding: 16px; border: 0; background: transparent; display: none; place-items: center; cursor: zoom-out; }
-.lightbox[open] { display: grid; }
-.lightbox::backdrop { background: rgba(0,0,0,.86); }
-.lightbox img { max-width: 100%; max-height: calc(100vh - 32px); object-fit: contain; background: #fff; }
-.lightbox-x { position: fixed; top: 12px; right: 12px; width: 41px; height: 41px; border: 0; border-radius: 50%; background: #fff; cursor: pointer; }
-.lightbox-x::before, .lightbox-x::after { content: ""; position: absolute; left: 10px; top: 20px; width: 21px; height: 1.5px; background: #000; transform: rotate(45deg); }
-.lightbox-x::after { transform: rotate(-45deg); }
-.offers[hidden] { display: none; }
   .m-final { font-size: 24px; line-height: 1.2; color: #000; }
   .m-cta { margin-top: -8px; }
   .m-short .m-body { justify-content: center; }
@@ -797,6 +788,17 @@
   .reveal { filter: blur(8px); transform: translateY(18px); }
   @media (max-width: 760px) { .reveal { filter: none; transform: translateY(14px); transition: opacity .7s ease, transform .8s cubic-bezier(.2,.7,.2,1); } }
   img, video { content-visibility: auto; }
+
+  /* mobile: the first screen is exactly the height of the screen */
+  @media (max-width: 900px) {
+    .hero { height: 100vh; height: 100svh; min-height: 0; max-height: none; }
+  }
+
+  /* mobile fixes: nothing may widen the page sideways (iOS ignores overflow on body alone); no black box around the video */
+  html, body { overflow-x: hidden; overflow-x: clip; max-width: 100%; }
+  html { background: #fff; }
+  .hero { background: #d9d6d2; }
+  video.hero-bg { background: transparent; top: 0; height: 100%; }
 </style>
 </head>
 <body>
@@ -1075,18 +1077,6 @@
   <div class="modal-scroll" id="modalBody"></div>
 </dialog>
 
-<script type="application/json" id="offersData">{
-  "items": [
-    { "show": true, "tag": "Body treatments", "img": "assets/img/pressotherapy-course-dubai.webp", "title_ru": "Курс\nпрессотерапии 5+1", "title_en": "Pressotherapy\ncourse 5+1", "old": "3000 AED", "price": "2500 AED" },
-    { "show": true, "tag": "Body treatments", "img": "assets/img/hydrotherapy-bath-body-treatment-dubai.webp", "title_ru": "Курс\nгидрованны 5+1", "title_en": "Hydrotherapy bath\ncourse 5+1", "old": "3000 AED", "price": "2500 AED" },
-    { "show": true, "tag": "Body treatments", "img": "assets/img/icoone-body-contouring-dubai.webp", "title_ru": "Курс\nIcoone 5+1", "title_en": "Icoone\ncourse 5+1", "old": "3300 AED", "price": "2750 AED" },
-    { "show": true, "tag": "Body treatments", "img": "assets/img/pressotherapy-course-dubai.webp", "crop": "left:-41.9%;top:-15.34%;width:191.09%;height:147.08%", "title_ru": "Прессотерапия\n+ гидрованна", "title_en": "Pressotherapy\n+ hydrotherapy bath", "old": "1000 AED", "price": "500 AED" },
-    { "show": true, "tag": "Body treatments", "img": "assets/img/icoone-body-contouring-dubai.webp", "pos": "72% 50%", "title_ru": "Прессотерапия\n+ Icoone", "title_en": "Pressotherapy\n+ Icoone", "old": "1050 AED", "price": "550 AED" },
-    { "show": true, "tag": "Facial treatments", "img": "assets/img/advalight-facial-treatment-dubai.webp", "pos": "50% 30%", "title_ru": "AdvaLight\nfull protocol", "title_en": "AdvaLight\nfull protocol", "old": "2200 AED", "price": "1760 AED", "gift_ru": "+ LED therapy в подарок", "gift_en": "+ complimentary LED therapy" },
-    { "show": true, "tag": "Facial treatments", "img": "assets/img/facial-treatments-dubai.webp", "pos": "50% 35%", "title_ru": "BBL\n+ LED therapy", "title_en": "BBL\n+ LED therapy", "gift_ru": "LED therapy\nв подарок", "gift_en": "Complimentary\nLED therapy" }
-  ]
-}
-</script>
 <script src="assets/site-data.js"></script>
 <script src="assets/site.js"></script>
 
